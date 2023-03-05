@@ -4,6 +4,9 @@ This is the repository for the code implementation, results, and dataset of the 
 The current version of the paper can be accessed at [here](./doc/multi_modal_loam.pdf).
 
 # Introduction
+  <div align=left>
+    <img src="./doc/experiments.gif" width="1000">
+</div>
 We propose a tightly-coupled multi-modal multi-LiDAR-inertial SLAM system for surveying and mapping tasks. By taking advantage of both solid-state and spinnings LiDARs, and built-in inertial measurement units (IMU). First, we use spatial-temporal calibration modules to align the timestamp and calibrate extrinsic parameters between sensors. Then, we extract two groups of feature points including edge and plane points, from LiDAR data. Next, with pre-integrated IMU data, an undistortion module is applied to the LiDAR point cloud data. Finally, the undistorted point clouds are merged into one point cloud and processed with a sliding window based optimization module.
 
 # System
