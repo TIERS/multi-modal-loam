@@ -82,3 +82,8 @@ More datasets can be found in our previous work:
     </div>
 
 
+# Acknowledgements
+This repo has borrowed code from the following great repositories and has included relevant copyrights in the code to give proper credit. We are grateful for the excellent work done by the creators of the original repositories, which has made this work possible. We encourage the user to read material from those original repositories.
+- [LIO-LIVOX](https://github.com/Livox-SDK/LIO-Livox) : A Robust LiDAR-Inertial Odometry for Livox LiDAR
+- [LEGO-LOAM](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM) : A lightweight and ground optimized lidar odometry and mapping
+- [LIO-MAPPING](https://github.com/hyye/lio-mapping) : A Tightly Coupled 3D Lidar and Inertial Odometry and Mapping Approach
