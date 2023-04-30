@@ -1,6 +1,6 @@
 # MMLOAM : Robust Multi-Modal Multi-LiDAR-Inertial Odometry and Mapping for Indoor Environments
 
-This is the repository for the code implementation, results, and dataset of the paper titled "Robust Multi-Modal Multi-LiDAR-Inertial Odometry and Mapping for Indoor Environments", which is currently under review for IROS 2023. Our team is currently organizing the code and we plan to make it open source on May 1st.
+This is the repository for the code implementation, results, and dataset of the paper titled "Robust Multi-Modal Multi-LiDAR-Inertial Odometry and Mapping for Indoor Environments", which is currently under review for IROS 2023.
 The current version of the paper can be accessed at [here](./doc/multi_modal_loam.pdf).
 
 # Introduction
@@ -29,7 +29,29 @@ surface.
 # Updates
 -  2023.03.02 : Init repo
 -  2023.03.05 : Upload rosbags & update details
+-  2023.04.30 : Upload multi-modal lidar-inertial odom
 
+# RUN with rosbags:
+## Compile
+  ```
+  cd ~/catkin_ws/src
+  git clone https://github.com/TIERS/multi-modal-loam.git
+  cd ..
+  catkin_make -DCATKIN_WHITELIST_PACKAGES="mm_loam"
+  ```
+
+## Play rosbag
+```
+rosbag play office_2022-04-21-19-14-23.bag --clock
+```
+
+## Run launch file
+```
+roslaunch mm_loam mm_lio_full.launch
+```
+
+# Loop Closure
+TODO
 
 # Dataset
 Indoor environments:
@@ -58,8 +80,5 @@ More datasets can be found in our previous work:
     <div align=center>
     <img src="./doc/outdoor_1.png" width="1000">
     </div>
-
-# Method
-In Progress
 
 
