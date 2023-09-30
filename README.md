@@ -1,6 +1,6 @@
 # MMLOAM : Robust Multi-Modal Multi-LiDAR-Inertial Odometry and Mapping for Indoor Environments
 
-This is the repository for the code implementation, results, and dataset of the paper titled "Robust Multi-Modal Multi-LiDAR-Inertial Odometry and Mapping for Indoor Environments", which is currently under review for IROS 2023.
+This is the repository for the code implementation, results, and dataset of the paper titled "Robust Multi-Modal Multi-LiDAR-Inertial Odometry and Mapping for Indoor Environments".
 The current version of the paper can be accessed at [here](./doc/multi_modal_loam.pdf).
 
 # Introduction
@@ -27,27 +27,38 @@ scan pattern, the mapping result is able to show clear detail of object’s
 surface.
 
 # Updates
--  2023.03.02 : Init repo
--  2023.03.05 : Upload rosbags & update details
+-  2023.09.30 : Add docker support
 -  2023.04.30 : Upload multi-modal lidar-inertial odom
+-  2023.03.02 : Init repo
+ 
 
 # RUN with rosbags:
-## Compile
+
+## Build MM-LOAM Docker image
   ```
-  cd ~/catkin_ws/src
-  git clone https://github.com/TIERS/multi-modal-loam.git
-  cd ..
-  catkin_make -DCATKIN_WHITELIST_PACKAGES="mm_loam"
+  - cd ~/catkin_ws/src
+  - git clone https://github.com/TIERS/multi-modal-loam.git 
+  - cd multi-modal-loam
+  - docker build --progress=plain . -t mm-loam 
+  - git submodule update --init --recursive
   ```
+  **Note:** We recommend using a Docker container to run this code because there are unresolved dependencies in some Ubuntu system. Docker containers provide a consistent and isolated environment, ensuring that the code runs smoothly across different systems.
+
 
 ## Play rosbag
 ```
+roscore
 rosbag play office_2022-04-21-19-14-23.bag --clock
 ```
 
-## Run launch file
+## Run launch file in Docker container
 ```
-roslaunch mm_loam mm_lio_full.launch
+docker run --rm -it --network=host mm-loam /bin/bash -c "roslaunch mm_loam mm_lio_full.launch"
+```
+
+## Visualzation
+```
+rviz -d mm-loam/config/backlio_viz.rviz
 ```
 
 # Loop Closure

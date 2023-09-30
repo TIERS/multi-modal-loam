@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot name="sensor_suit">  
+  <link name="velodyne" />  
+  <link name="livox_frame" />  
+
+  <joint name="joint1" type="fixed">
+    <parent link="livox_frame"/>
+    <child link="velodyne"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.1"/>
+  </joint>
+   
+ 
+
+</robot>  

@@ -1,0 +1,38 @@
+<launch>
+    <!-- Launch velo and Livox fusion method -->
+    <arg name="use_sim_time" default="true" />
+    <arg name="model" default="$(find mm_loam)/config/sensors_suite.urdf"/>
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node name="mm_lidarsAligner" pkg="mm_loam" type="mm_lidarsAligner" output="log">
+        <!-- <remap from="/livox/imu"   to="/horizon/livox/imu"/>
+        <remap from="/livox/lidar" to="/horizon/livox/lidar"/> -->
+        <param name="enable_extrinsic_estimation"    value="true" />
+        <param name="enable_timeoffset_estimation"   value="false" />
+        <param name="extri_esti_hori_integ_frames"   value="1" />  <!-- No static motion -->
+        <param name="give_extrinsic_Velo_to_Hori"    value="fasle" />
+        <param name="time_esti_error_threshold"      value="35000" />
+        <param name="time_esti_start_yaw_velocity"   value="0.6" />
+        <param name="give_timeoffset_Velo_to_Hori"   value="fasle" />
+        <param name="timeoffset_Velo_to_Hori"        value="0.070" />  <!-- 0.070 for Hall; -->
+        <param name="timeoffset_search_resolution"   value="10" />  <!-- points in a row -->
+        <param name="timeoffset_search_sliced_points" value="24000" /> <!-- points belong 24000/12000/6000-->
+        <param name="cut_raw_Hori_message_pieces"     value="1" /> <!-- points belong 24000/12000/6000-->
+    </node>
+
+
+    <node pkg="mm_loam" type="mm_scanRegistration" name="mm_scanRegistration" output="log">
+        <remap from="/a_velo"      to="/a_velo_"/>
+        <param name="near_points_threshold" value="2.0"/>
+        <param name="far_points_threshold"  value="50.0"/>
+        <param name="velo_skip_frames"    value="4" />
+        <param name="hori_skip_frames"    value="1" />
+        <param name="extrin_recali_times"    value="20" />
+        <param name="pub_feature_points"  type="bool"   value="true" />
+    </node>
+ 
+    <node launch-prefix="nice" pkg="rviz" type="rviz" name="lio_rviz" args="-d $(find mm_loam)/config/backlio_viz.rviz" />
+
+</launch>

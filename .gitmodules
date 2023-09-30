@@ -1,0 +1,3 @@
+[submodule "livox_ros_driver"]
+	path = livox_ros_driver
+	url = https://github.com/Livox-SDK/livox_ros_driver
